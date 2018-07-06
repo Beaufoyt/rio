@@ -6,6 +6,8 @@ import { bindActionCreators } from 'redux';
 import { switchTool } from '../actions/workshop';
 
 import PureComponent from './PureComponent';
+import Header from './Header';
+import Hero from './Hero';
 
 class App extends PureComponent {
     setTool = (e) => {
@@ -19,13 +21,15 @@ class App extends PureComponent {
 
     render() {
         return (
-            <div className="sidebar">
-                <button
-                    name="line"
-                    onClick={this.setTool}
-                    className={`btn btn-success ${this.isActive('line') ? 'active' : ''}`}>
-                    Line
-                </button>
+            <div>
+                <Header />
+                <Hero />
+                <div className="content-block">
+                    .
+                </div>
+                <div className="footer">
+                    .
+                </div>
             </div>
         );
     }

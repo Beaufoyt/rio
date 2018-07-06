@@ -1,0 +1,47 @@
+.header {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    color: rgba(255,255,255,0.75);
+    position: fixed;
+    width: 100%;
+    text-align: right;
+    z-index: 30;
+}
+
+.header-dark {
+    background-color: #24292e;
+}
+
+.brand-logo {
+    height: 32px;
+    line-height: 32px;
+    font-weight: bold;
+    font-size: 16px;
+    color: rgba(255,255,255,0.75);
+    float: left;
+    font-size: 22px;
+
+    &:hover {
+        color: rgba(255,255,255,0.75);
+        text-decoration: none;
+    }
+}
+
+.header-nav-link {
+    display: inline-block;
+    color: rgba(255,255,255,0.75);
+    padding: 0 8px;
+    font-weight: 600;
+    line-height: 32px;
+
+    &:hover {
+        text-decoration: none;
+        color: rgba(255,255,255,1);
+    }
+}
+
+.header-content-holder {
+    margin: 0 4px;
+    padding: 0 16px;
+    height: 32px;
+}

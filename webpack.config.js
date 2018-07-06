@@ -7,7 +7,7 @@ module.exports = {
         './src/index.jsx',
     ],
     module: {
-        rules: [
+        loaders: [
             {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
@@ -27,6 +27,10 @@ module.exports = {
             {
                 test: /\.css$/,
                 loader: 'style-loader!css-loader',
+            },
+            {
+                test: /\.(gif|svg|jpg|png)$/,
+                loader: 'file-loader',
             },
         ],
     },
