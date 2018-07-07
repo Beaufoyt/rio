@@ -1,5 +1,27 @@
-.content-block {
-    height: 600px;
-    background-color: rgba(0,0,0,0.1);
-    width: 100%;
+.content-block-row {
+    margin: 60px 0;
+}
+
+.content-block-section {
+    text-align: center;
+
+    img {
+        margin-bottom: 15px;
+        width: 280px;
+    }
+
+    span {
+        display: block;
+        font-family: 'Roboto Condensed', sans-serif;
+        color: rgba(0,0,0,0.9);
+        font-size: 18px;
+        text-transform: uppercase;
+    }
+
+    .content-block-content {
+        &:hover {
+            text-decoration: none;
+            color: inherit;
+        }
+    }
 }

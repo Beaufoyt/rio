@@ -8,6 +8,7 @@ import { switchTool } from '../actions/workshop';
 import PureComponent from './PureComponent';
 import Header from './Header';
 import Hero from './Hero';
+import RecipesSection from './RecipesSection';
 
 class App extends PureComponent {
     setTool = (e) => {
@@ -24,9 +25,7 @@ class App extends PureComponent {
             <div>
                 <Header />
                 <Hero />
-                <div className="content-block">
-                    .
-                </div>
+                <RecipesSection />
                 <div className="footer">
                     .
                 </div>
