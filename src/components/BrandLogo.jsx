@@ -1,9 +1,14 @@
 import React from 'react';
 
+import Leaf from '../assets/leaf.svg';
+
 const Header = () => {
     return (
         <a href="/" className="brand-logo">
-            {'Rio\'s Den'}
+            <img src={Leaf} alt="brand" />
+            <span>
+                {'Rio\'s Den'}
+            </span>
         </a>
     );
 };
