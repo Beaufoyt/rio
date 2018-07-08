@@ -26,11 +26,9 @@
 }
 
 .latest-section {
-    margin-bottom: 70px;
-
     hr {
         margin: 0 70px;
-        color: rgba(0,0,0,0.7);
+        background-color: rgba(0,0,0,0.7);
     }
 }
 
@@ -73,6 +71,37 @@
         a {
             text-decoration: none;
             color: inherit;
+        }
+    }
+}
+
+.recipes-page {
+    h2 {
+        text-align: center;
+        text-transform: uppercase;
+        padding: 88px 0 32px 0;
+        font-weight: 600;
+    }
+
+    hr {
+        margin: 0 70px;
+        background-color: #24292e;
+    }
+
+    .recipe-list-section {
+        margin: 70px;
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+
+            li {
+                a {
+                    color: rgba(0,0,0,0.9);
+                    text-decoration: none;
+                }
+            }
+
         }
     }
 }
