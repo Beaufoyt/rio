@@ -10,13 +10,13 @@ const RecipesSection = () => {
         <div className="container">
             <div className="row content-block-row">
                 <div className="col-sm content-block-section">
-                    <RecipesLink path="/" img={Household} text="Household Recipes" />
+                    <RecipesLink path="/recipes" img={Household} text="Household Recipes" />
                 </div>
                 <div className="col-sm content-block-section">
-                    <RecipesLink path="/" img={Cosmetic} text="Cosmetic Recipes" />
+                    <RecipesLink path="/recipes" img={Cosmetic} text="Cosmetic Recipes" />
                 </div>
                 <div className="col-sm content-block-section">
-                    <RecipesLink path="/" img={Remedies} text="Natural Recipes" />
+                    <RecipesLink path="/recipes" img={Remedies} text="Natural Recipes" />
                 </div>
             </div>
         </div>

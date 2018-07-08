@@ -1,6 +1,16 @@
 import React from 'react';
 
+import FooterLinkColumn from './FooterLinkColumn';
+
+import footerLinks from '../constants/footerLinks';
+
 const Footer = () => {
+    const mapFooterLinkColumns = () => {
+        return Object.keys(footerLinks).map((key) => {
+            return <FooterLinkColumn key={key} itemList={footerLinks[key]} title={key} />;
+        });
+    };
+
     return (
         <div className="footer">
             <div className="container footer-container">
@@ -15,45 +25,7 @@ const Footer = () => {
                             </p>
                         </a>
                     </div>
-                    <div className="col-sm link-column">
-                        <h5>Recipes</h5>
-                        <ul>
-                            <li>
-                                <a href="/">Household Recipes</a>
-                            </li>
-                        </ul>
-                        <ul>
-                            <li>
-                                <a href="/">Cosmetic Recipes</a>
-                            </li>
-                        </ul>
-                        <ul>
-                            <li>
-                                <a href="/">Natural Remedies</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div className="col-sm link-column">
-                        <h5>About</h5>
-                        <ul>
-                            <li>
-                                <a href="/">Who we are</a>
-                            </li>
-                        </ul>
-                        <ul>
-                            <li>
-                                <a href="/">Sources</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div className="col-sm link-column">
-                        <h5>Contact</h5>
-                        <ul>
-                            <li>
-                                <a href="/">Contact us</a>
-                            </li>
-                        </ul>
-                    </div>
+                    {mapFooterLinkColumns()}
                 </div>
                 <hr />
                 <h6 className="footer-copyright">

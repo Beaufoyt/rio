@@ -8,7 +8,6 @@ import Recipe from './Recipe';
 /* eslint-disable react/forbid-prop-types */
 
 const RecipePage = (props) => {
-    console.log(props);
     return (
         <div className="recipe-page">
             <Recipe recipe={recipes.find(recipe => recipe.id === props.match.params.id)} />
