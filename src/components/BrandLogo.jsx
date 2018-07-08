@@ -2,7 +2,7 @@ import React from 'react';
 
 import Leaf from '../assets/leaf.svg';
 
-const Header = () => {
+const BrandLogo = () => {
     return (
         <a href="/" className="brand-logo">
             <img src={Leaf} alt="brand" />
@@ -13,4 +13,4 @@ const Header = () => {
     );
 };
 
-export default Header;
+export default BrandLogo;

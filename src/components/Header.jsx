@@ -27,10 +27,12 @@ class Header extends PureComponent {
         const header = document.getElementById('header');
         const { yOffset } = this.getDocumentScrollOffset();
 
-        if (yOffset >= 744 && !header.classList.contains('header-dark')) {
-            header.classList.toggle('header-dark');
-        } else if (yOffset < 744 && header.classList.contains('header-dark')) {
-            header.classList.toggle('header-dark');
+        if (document.location.pathname === '/') {
+            if (yOffset >= 744 && !header.classList.contains('header-dark')) {
+                header.classList.toggle('header-dark');
+            } else if (yOffset < 744 && header.classList.contains('header-dark')) {
+                header.classList.toggle('header-dark');
+            }
         }
     }
 
@@ -43,8 +45,8 @@ class Header extends PureComponent {
             <div id="header" className="header">
                 <div className="header-content-holder">
                     <BrandLogo />
-                    <NavLink text="Latest" path="#latest" />
-                    <NavLink text="Recipes" path="#" />
+                    <NavLink text="Latest" path="/#latest" />
+                    <NavLink text="Recipes" path="/recipes" />
                     <NavLink text="About" path="#" />
                     <NavLink text="Contact" path="#" />
                 </div>

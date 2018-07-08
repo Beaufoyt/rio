@@ -1,17 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
-const Header = (props) => {
+const NavLink = (props) => {
     return (
-        <a className="header-nav-link" href={props.path}>
+        <Link className="header-nav-link" href={props.path} to={props.path}>
             {props.text}
-        </a>
+        </Link>
     );
 };
 
-Header.propTypes = {
+NavLink.propTypes = {
     text: PropTypes.string.isRequired,
     path: PropTypes.string.isRequired,
 };
 
-export default Header;
+export default NavLink;
