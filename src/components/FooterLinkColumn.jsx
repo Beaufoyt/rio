@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import _ from 'lodash';
 
 const FooterLinkColumn = (props) => {
     return (
         <div className="col-sm link-column">
-            <h4>{props.title}</h4>
+            <h4>{_.startCase(props.title)}</h4>
             <ul>
                 {
                     props.itemList.map((item) => {
