@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+/* eslint-disable react/forbid-prop-types */
+
 const Recipes = () => {
     return (
         <div className="recipes-page">
@@ -97,7 +99,7 @@ const Recipes = () => {
                         </Link>
                     </li>
                     <li>
-                        <Link to="/" href="/">
+                        <Link to="/recipe/1" href="/">
                             Sleep easy and relaxing roll-on (Litsea).
                         </Link>
                     </li>

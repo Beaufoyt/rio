@@ -81,6 +81,7 @@
         text-transform: uppercase;
         padding: 88px 0 32px 0;
         font-weight: 600;
+        margin-bottom: 0;
     }
 
     hr {
@@ -104,4 +105,8 @@
 
         }
     }
+}
+
+.recipe-page {
+    padding-top: 56px;
 }
