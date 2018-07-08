@@ -1,11 +1,10 @@
 .header {
-    padding-top: 12px;
-    padding-bottom: 12px;
+    height: 56px;
     color: rgba(255,255,255,0.75);
     position: fixed;
     width: 100%;
     text-align: right;
-    z-index: 30;
+    z-index: 29;
     transition: background-color linear 0.2s;
 }
 
@@ -47,6 +46,7 @@
     font-weight: 300;
     line-height: 32px;
     text-transform: uppercase;
+    vertical-align: sub;
 
     &:hover {
         text-decoration: none;
@@ -55,7 +55,14 @@
 }
 
 .header-content-holder {
-    margin: 0 4px;
+    margin: 12px 4px;
     padding: 0 16px;
     height: 32px;
+    position: fixed;
+    z-index: 31;
+    width: 100%;
+
+    .header-nav {
+        float: right;
+    }
 }
