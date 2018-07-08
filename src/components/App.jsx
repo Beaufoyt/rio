@@ -9,6 +9,7 @@ import PureComponent from './PureComponent';
 import Header from './Header';
 import Hero from './Hero';
 import RecipesSection from './RecipesSection';
+import LatestSection from './LatestSection';
 
 class App extends PureComponent {
     setTool = (e) => {
@@ -22,10 +23,11 @@ class App extends PureComponent {
 
     render() {
         return (
-            <div>
+            <div style={{ scrollBehavior: 'smooth' }}>
                 <Header />
                 <Hero />
                 <RecipesSection />
+                <LatestSection />
                 <div className="footer">
                     .
                 </div>

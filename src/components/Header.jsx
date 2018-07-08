@@ -6,6 +6,7 @@ import PureComponent from './PureComponent';
 
 class Header extends PureComponent {
     componentDidMount() {
+        this.toggleHeaderBackground();
         window.addEventListener('scroll', this.handleScroll);
     }
 
@@ -13,11 +14,28 @@ class Header extends PureComponent {
         window.removeEventListener('scroll', this.handleScroll);
     }
 
-    nav = React.createRef();
+    getDocumentScrollOffset = () => {
+        const doc = document.documentElement;
+
+        return {
+            yOffset: (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0),
+            xOffset: (window.pageXOffset || doc.scrollLeft) - (doc.clientLeft || 0),
+        };
+    }
+
+    toggleHeaderBackground = () => {
+        const header = document.getElementById('header');
+        const { yOffset } = this.getDocumentScrollOffset();
+
+        if (yOffset >= 744 && !header.classList.contains('header-dark')) {
+            header.classList.toggle('header-dark');
+        } else if (yOffset < 744 && header.classList.contains('header-dark')) {
+            header.classList.toggle('header-dark');
+        }
+    }
 
     handleScroll = () => {
-        const testDiv = document.getElementById('header');
-        console.log(testDiv.offsetTop);
+        this.toggleHeaderBackground();
     };
 
     render() {
@@ -25,7 +43,7 @@ class Header extends PureComponent {
             <div id="header" className="header">
                 <div className="header-content-holder">
                     <BrandLogo />
-                    <NavLink text="Latest" path="#" />
+                    <NavLink text="Latest" path="#latest" />
                     <NavLink text="Recipes" path="#" />
                     <NavLink text="About" path="#" />
                     <NavLink text="Contact" path="#" />

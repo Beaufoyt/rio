@@ -6,6 +6,7 @@
     width: 100%;
     text-align: right;
     z-index: 30;
+    transition: background-color linear 0.2s;
 }
 
 .header-dark {
@@ -25,6 +26,7 @@
        color: white;
        margin-left: 10px;
        font-family: 'Sedgwick Ave', Helvetica;
+       vertical-align: middle;
    }
 
    img {
@@ -42,8 +44,9 @@
     display: inline-block;
     color: rgba(255,255,255,0.75);
     padding: 0 8px;
-    font-weight: 600;
+    font-weight: 300;
     line-height: 32px;
+    text-transform: uppercase;
 
     &:hover {
         text-decoration: none;
