@@ -1,17 +1,17 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+
 import rootReducer from '../reducers/index';
 
 /* eslint-disable global-require  */
 
-export default function configureStore(initialState) {
-    const store = createStore(rootReducer, initialState);
-
-    if (module.hot) {
-        module.hot.accept('../reducers', () => {
-            const nextRootReducer = require('../reducers/index');
-            store.replaceReducer(nextRootReducer);
-        });
+export default function configureStore() {
+    if (window.store == null) {
+        window.store = applyMiddleware(thunkMiddleware)(createStore)(rootReducer);
+        return window.store;
     }
-
-    return store;
+    if (process.env.NODE_ENV === 'development') {
+        window.store.replaceReducer(rootReducer);
+    }
+    return window.store;
 }
