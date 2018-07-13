@@ -11,10 +11,20 @@ import './styles/index.scss';
 
 const store = configureStore();
 
+function handleUpdate() {
+    const {
+        action,
+    } = this.state.location;
+
+    if (action === 'PUSH') {
+        window.scrollTo(0, 0);
+    }
+}
+
 const otherRender = () => {
     render(
         <Provider store={store}>
-            <Router history={browserHistory}>
+            <Router onUpdate={handleUpdate} history={browserHistory}>
                 <Routes />
             </Router>
         </Provider>,

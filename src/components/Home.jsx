@@ -4,13 +4,24 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { switchTool } from '../actions/workshop';
+import scrollToAnchor from '../helpers/scrollToAnchor';
 
 import PureComponent from './PureComponent';
 import Hero from './Hero';
 import RecipesSection from './RecipesSection';
 import LatestSection from './LatestSection';
 
+const headerHeight = 56;
+
 class Home extends PureComponent {
+    componentDidMount() {
+        scrollToAnchor(this.props.location, { x: 0, y: -headerHeight });
+    }
+
+    componentDidUpdate() {
+        scrollToAnchor(this.props.location, { x: 0, y: -headerHeight });
+    }
+
     setTool = (e) => {
         console.log('made it', e.target.name);
         this.props.switchTool('line');
@@ -26,7 +37,6 @@ class Home extends PureComponent {
                 <Hero />
                 <RecipesSection />
                 <LatestSection />
-
             </div>
         );
     }
@@ -35,6 +45,9 @@ class Home extends PureComponent {
 Home.propTypes = {
     tool: PropTypes.string,
     switchTool: PropTypes.func.isRequired,
+    location: PropTypes.shape({
+        pathname: PropTypes.string.isRequired,
+    }).isRequired,
 };
 
 Home.defaultProps = {
