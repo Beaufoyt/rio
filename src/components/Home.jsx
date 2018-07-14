@@ -5,16 +5,17 @@ import { bindActionCreators } from 'redux';
 
 import { switchTool } from '../actions/workshop';
 import scrollToAnchor from '../helpers/scrollToAnchor';
+import scrollTop from '../helpers/scrollTop';
+import { headerHeight } from '../constants/dimensions';
 
 import PureComponent from './PureComponent';
 import Hero from './Hero';
 import RecipesSection from './RecipesSection';
 import LatestSection from './LatestSection';
 
-const headerHeight = 56;
-
 class Home extends PureComponent {
     componentDidMount() {
+        scrollTop();
         scrollToAnchor(this.props.location, { x: 0, y: -headerHeight });
     }
 

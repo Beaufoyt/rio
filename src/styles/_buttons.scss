@@ -1,0 +1,28 @@
+.form-search {
+    input {
+        border-radius: 5px;
+        padding: 10px;
+        width: 50%;
+        color: black;
+        background-color: rgba(255,255,255,0.7);
+        border: none;
+        transition: background-color linear .5s;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+
+        &:focus {
+            outline: none;
+            box-shadow: 0 0 0 0.2rem rgba(248, 249, 250, 0.5);
+            background-color: white;
+        }
+    }
+
+    button {
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+        height: 41px;
+        padding: 0 10px;
+        vertical-align: top;
+        border: none;
+    }
+}

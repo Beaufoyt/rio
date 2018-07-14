@@ -1,5 +1,4 @@
 import React from 'react';
-
 import RecipesLink from './RecipesLink';
 import Household from '../assets/household.png';
 import Cosmetic from '../assets/cosmetic.png';
@@ -10,13 +9,13 @@ const RecipesSection = () => {
         <div className="container">
             <div className="row content-block-row">
                 <div className="col-sm content-block-section">
-                    <RecipesLink path="/recipes" img={Household} text="Household Recipes" />
+                    <RecipesLink path="/recipes#householdRecipes" img={Household} text="Household Recipes" />
                 </div>
                 <div className="col-sm content-block-section">
-                    <RecipesLink path="/recipes" img={Cosmetic} text="Cosmetic Recipes" />
+                    <RecipesLink path="/recipes#cosmeticRecipes" img={Cosmetic} text="Cosmetic Recipes" />
                 </div>
                 <div className="col-sm content-block-section">
-                    <RecipesLink path="/recipes" img={Remedies} text="Natural Recipes" />
+                    <RecipesLink path="/recipes#naturalRemedies" img={Remedies} text="Natural Remedies" />
                 </div>
             </div>
         </div>

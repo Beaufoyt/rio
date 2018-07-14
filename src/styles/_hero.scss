@@ -23,23 +23,10 @@
         color: rgba(255,255,255,1);
     }
 
-    .form-search {
-        input {
-            padding: 10px;
-            width: 50%;
-            margin-right: 8px;
-        }
-
-        button {
-            height: 44px;
-            padding: 0 10px;
-        }
-    }
-
     position: absolute;
     text-align: center;
     color: rgba(0,0,0,0.75);
-    width: 532px;
+    max-width: 600px;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
