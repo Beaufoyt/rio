@@ -11,10 +11,8 @@ class SearchForm extends PureComponent {
     render() {
         return (
             <form onSubmit={this.submit} className="form-search">
+                <i className="fa fa-search" />
                 <input placeholder="Enter recipe here" className="search-field" type="text" />
-                <button className="btn btn-light btn-search" type="submit">
-                    <i className="fa fa-search" />
-                </button>
             </form>
         );
     }
