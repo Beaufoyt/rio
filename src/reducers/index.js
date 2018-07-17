@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
-import workshop from './workshop';
+import recipes from './recipes';
 
 export default combineReducers({
-    workshop,
+    recipes,
 });

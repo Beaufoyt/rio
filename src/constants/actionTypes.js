@@ -1,5 +1,7 @@
 import keyMirror from '../helpers/keyMirror';
 
 export default keyMirror({
-    SWITCH_TOOL: null,
+    RECIPE_ERROR: null,
+    RECIPE_SUCCESS: null,
+    RECIPES_ARE_LOADING: null,
 });

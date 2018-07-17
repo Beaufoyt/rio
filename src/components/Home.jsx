@@ -1,9 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
-import { switchTool } from '../actions/workshop';
 import scrollToAnchor from '../helpers/scrollToAnchor';
 import scrollTop from '../helpers/scrollTop';
 import { headerHeight } from '../constants/dimensions';
@@ -23,15 +20,6 @@ class Home extends PureComponent {
         scrollToAnchor(this.props.location, { x: 0, y: -headerHeight });
     }
 
-    setTool = (e) => {
-        console.log('made it', e.target.name);
-        this.props.switchTool('line');
-    }
-
-    isActive = (key) => {
-        return key === this.props.tool;
-    }
-
     render() {
         return (
             <div style={{ scrollBehavior: 'smooth' }}>
@@ -44,23 +32,9 @@ class Home extends PureComponent {
 }
 
 Home.propTypes = {
-    tool: PropTypes.string,
-    switchTool: PropTypes.func.isRequired,
     location: PropTypes.shape({
         pathname: PropTypes.string.isRequired,
     }).isRequired,
 };
 
-Home.defaultProps = {
-    tool: '',
-};
-
-const mapStateToProps = state => ({
-    tool: state.workshop.tool,
-});
-
-const mapDispatchToProps = dispatch => (
-    bindActionCreators({ switchTool }, dispatch)
-);
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default Home;
