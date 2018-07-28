@@ -6,6 +6,7 @@ const input = {
     searchResults: null,
     areLoading: false,
     error: null,
+    searchString: '',
 };
 
 export default function recipes(state = input, action) {
@@ -15,7 +16,7 @@ export default function recipes(state = input, action) {
     }
 
     case types.RECIPES_ARE_LOADING: {
-        return newState(state, { areLoading: true });
+        return newState(state, { areLoading: true, searchString: action.searchString });
     }
 
     default:

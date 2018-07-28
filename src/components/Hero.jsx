@@ -13,8 +13,8 @@ class Hero extends PureComponent {
         console.log(this.props.recipes);
     }
 
-    onSearchSubmit = () => {
-        this.props.searchRecipes();
+    onSearchSubmit = (searchString) => {
+        this.props.searchRecipes(searchString);
     }
 
     render() {
@@ -22,7 +22,9 @@ class Hero extends PureComponent {
             <div className="hero-banner">
                 <div className="content">
                     <h2>Aromatherapy & Natural Cosmetic Recipes</h2>
-                    <SearchForm isLoading={this.props.recipesAreLoading} onSubmit={this.onSearchSubmit} />
+                    <SearchForm
+                        isLoading={this.props.recipesAreLoading}
+                        onSubmit={this.onSearchSubmit} />
                 </div>
             </div>
         );
