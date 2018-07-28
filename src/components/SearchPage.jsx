@@ -9,7 +9,7 @@ import { searchRecipes } from '../actions/recipes';
 import SearchForm from './SearchForm';
 import PureComponent from './PureComponent';
 
-class Hero extends PureComponent {
+class SearchPage extends PureComponent {
     state = {
         searchString: null,
         searchError: null,
@@ -22,16 +22,10 @@ class Hero extends PureComponent {
     componentWillReceiveProps(newProps) {
         const { recipes, recipesAreLoading } = newProps;
 
-        if (this.props.recipesAreLoading && !recipesAreLoading) {
-            if (recipes) {
-                if (recipes.length === 0) {
-                    this.setState({
-                        searchError: `No recipes found for '${this.state.searchString}'`,
-                    });
-                } else {
-                    this.props.history.push('/search');
-                }
-            }
+        if (this.props.recipesAreLoading && !recipesAreLoading && recipes && recipes.length === 0) {
+            this.setState({
+                searchError: `No recipes found for '${this.state.searchString}'`,
+            });
         }
     }
 
@@ -41,44 +35,41 @@ class Hero extends PureComponent {
     }
 
     render() {
-        console.log(this.state.searchError);
         return (
-            <div className="hero-banner">
-                <div className="content">
-                    <h2>Aromatherapy & Natural Cosmetic Recipes</h2>
-                    <SearchForm
-                        error={this.state.searchError}
-                        isLoading={this.props.recipesAreLoading}
-                        onSubmit={this.onSearchSubmit} />
-                </div>
+            <div className="search-page-container">
+                <SearchForm
+                    defaultValue={this.props.searchString}
+                    error={this.state.searchError}
+                    isLoading={this.props.recipesAreLoading}
+                    onSubmit={this.onSearchSubmit} />
+                <hr className="margin-top-double margin-bottom-double" />
             </div>
         );
     }
 }
 
-Hero.propTypes = {
+SearchPage.propTypes = {
     recipesAreLoading: PropTypes.bool.isRequired,
     recipes: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.number,
     })),
     searchRecipes: PropTypes.func.isRequired,
-    history: PropTypes.shape({
-        push: PropTypes.func,
-    }),
+    searchString: PropTypes.string,
 };
 
-Hero.defaultProps = {
+SearchPage.defaultProps = {
     recipes: null,
-    history: { push: () => {} },
+    searchString: null,
 };
 
 const mapStateToProps = state => ({
     recipesAreLoading: state.recipes.areLoading,
     recipes: state.recipes.searchResults,
+    searchString: state.recipes.searchString,
 });
 
 const mapDispatchToProps = dispatch => (
     bindActionCreators({ searchRecipes }, dispatch)
 );
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Hero));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchPage));

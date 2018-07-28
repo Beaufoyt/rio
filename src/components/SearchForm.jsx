@@ -9,6 +9,10 @@ class SearchForm extends PureComponent {
         error: null,
     }
 
+    componentWillMount() {
+        this.setState({ searchString: this.props.defaultValue });
+    }
+
     submit = (e) => {
         e.preventDefault();
 
@@ -61,7 +65,7 @@ class SearchForm extends PureComponent {
                         { this.hasError() &&
                             <div className="alert alert-danger" role="alert">
                                 <i className="fa fa-exclamation-circle" />
-                                { this.props.error || this.state.error }
+                                { this.state.error || this.props.error }
                             </div>
                         }
                     </div>
@@ -75,12 +79,14 @@ SearchForm.propTypes = {
     isLoading: PropTypes.bool,
     onSubmit: PropTypes.func,
     error: PropTypes.string,
+    defaultValue: PropTypes.string,
 };
 
 SearchForm.defaultProps = {
     isLoading: false,
     onSubmit: () => {},
     error: null,
+    defaultValue: '',
 };
 
 export default SearchForm;

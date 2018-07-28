@@ -26,8 +26,7 @@ export function searchRecipes(searchString) {
         });
 
         setTimeout(() => {
-            console.log(searchResults);
-            dispatch(recipeSuccess([]));
+            dispatch(recipeSuccess(searchResults));
         }, 3000);
     };
 }

@@ -16,7 +16,7 @@ export default function recipes(state = input, action) {
     }
 
     case types.RECIPES_ARE_LOADING: {
-        return newState(state, { areLoading: true, searchString: action.searchString });
+        return newState(state, { areLoading: true, searchString: action.searchString, error: null });
     }
 
     default:

@@ -1,6 +1,6 @@
 const recipes = [
     {
-        id: '1',
+        id: 1,
         title: 'Relaxing & Anti-Insomnia Roll-On',
         description: `Lorem ipsum dolor sit amet,
             consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -43,8 +43,8 @@ const recipes = [
         date: '2018-07-07T21:46:54.199Z',
     },
     {
-        id: '1',
-        title: 'Something else',
+        id: 12,
+        title: 'Something else roll',
         description: `Lorem ipsum dolor sit amet,
             consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
             Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -86,7 +86,7 @@ const recipes = [
         date: '2018-07-07T21:46:54.199Z',
     },
     {
-        id: '1',
+        id: 871,
         title: 'Something else',
         description: `Lorem ipsum dolor sit amet,
             consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
