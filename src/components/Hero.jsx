@@ -41,7 +41,6 @@ class Hero extends PureComponent {
     }
 
     render() {
-        console.log(this.state.searchError);
         return (
             <div className="hero-banner">
                 <div className="content">

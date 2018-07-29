@@ -67,10 +67,6 @@ const recipes = [
         source: { text: 'aroma-zone.com', link: 'https://www.aroma-zone.com/' },
         tags: [
             {
-                text: 'naturalrecipe',
-                link: '/',
-            },
-            {
                 text: 'lavender',
                 link: '/',
             },
@@ -78,12 +74,8 @@ const recipes = [
                 text: 'insomnia',
                 link: '/',
             },
-            {
-                text: 'rollon',
-                link: '/',
-            },
         ],
-        date: '2018-07-07T21:46:54.199Z',
+        date: '2018-07-01T21:46:54.199Z',
     },
     {
         id: 871,
@@ -110,15 +102,7 @@ const recipes = [
         source: { text: 'aroma-zone.com', link: 'https://www.aroma-zone.com/' },
         tags: [
             {
-                text: 'naturalrecipe',
-                link: '/',
-            },
-            {
                 text: 'lavender',
-                link: '/',
-            },
-            {
-                text: 'insomnia',
                 link: '/',
             },
             {
@@ -126,11 +110,11 @@ const recipes = [
                 link: '/',
             },
         ],
-        date: '2018-07-07T21:46:54.199Z',
+        date: '2018-06-27T21:46:54.199Z',
     },
     {
         title: '2',
-        date: '2018-07-07T21:42:18.983Z',
+        date: '2018-06-05T21:42:18.983Z',
     },
 ];
 

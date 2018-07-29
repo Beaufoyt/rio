@@ -24,7 +24,7 @@ class RecipePage extends PureComponent {
                     className="btn btn-light btn-recipe-back">
                     <i className="fa fa-arrow-left" />
                 </Link>
-                <Recipe recipe={recipes.find(recipe => recipe.id === this.props.match.params.id)} />
+                <Recipe recipe={recipes.find(recipe => recipe.id === parseInt(this.props.match.params.id, 10))} />
             </div>
         );
     }

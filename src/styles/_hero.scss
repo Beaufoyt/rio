@@ -7,6 +7,24 @@
     background-attachment: fixed;
     background-position: center;
     z-index: 29;
+
+    .content {
+        h2 {
+            font-weight: 300;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
+            color: rgba(255,255,255,1);
+        }
+
+        position: absolute;
+        text-align: center;
+        color: rgba(0,0,0,0.75);
+        width: 600px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
 }
 
 .hero-banner img {
@@ -14,20 +32,24 @@
     max-height:100%;
 }
 
-.content {
-    h2 {
-        font-weight: 300;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
-        color: rgba(255,255,255,1);
+@media (max-width: 992px) {
+    .hero-banner {
+        .content {
+            width: 550px;
+        }
     }
-
-    position: absolute;
-    text-align: center;
-    color: rgba(0,0,0,0.75);
-    max-width: 600px;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+}
+@media (max-width: 768px) {
+    .hero-banner {
+        .content {
+            width: 450px;
+        }
+    }
+}
+@media (max-width: 576px) {
+    .hero-banner {
+        .content {
+            width: 350px;
+        }
+    }
 }

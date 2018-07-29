@@ -9,6 +9,7 @@ const recipesAreLoading = searchString => ({ type: types.RECIPES_ARE_LOADING, se
 
 export function searchRecipes(searchString) {
     const searchResults = [];
+    console.log(searchString);
     const sanitizedSearchString = searchString.trim().toLowerCase();
 
     return (dispatch) => {
@@ -27,6 +28,6 @@ export function searchRecipes(searchString) {
 
         setTimeout(() => {
             dispatch(recipeSuccess(searchResults));
-        }, 3000);
+        }, 300);
     };
 }
