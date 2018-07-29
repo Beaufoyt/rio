@@ -43,7 +43,9 @@ class SearchPage extends PureComponent {
         e.preventDefault();
         const searchString = e.target.id;
 
-        this.onSearchSubmit(searchString);
+        if (searchString) {
+            this.onSearchSubmit(searchString);
+        }
     }
 
     renderRecipeTiles = () => {
@@ -56,7 +58,11 @@ class SearchPage extends PureComponent {
                         const daysAgo = moment().diff(recipe.date, 'days');
 
                         return (
-                            <Link key={`${recipe.id}`} href={`/recipe/${recipe.id}`} to={`/recipe/${recipe.id}`} className="list-group-item list-group-item-action flex-column align-items-start">
+                            <Link
+                                key={`${recipe.id}`}
+                                href={`/recipe/${recipe.id}`}
+                                to={`/recipe/${recipe.id}`}
+                                className="list-group-item list-group-item-action flex-column align-items-start">
                                 <div className="d-flex w-100 justify-content-between">
                                     <h5 className="mb-1">{recipe.title}</h5>
                                     <small>
@@ -70,7 +76,10 @@ class SearchPage extends PureComponent {
                                     {
                                         recipe.tags.map((tag, index) => {
                                             return (
-                                                <button key={tag.text} onClick={this.searchRecipes} className="btn btn-link tag-link">
+                                                <button
+                                                    key={tag.text}
+                                                    onClick={this.searchRecipes}
+                                                    className="btn btn-link tag-link">
                                                     <small id={tag.text}>
                                                         {tag.text}{index !== recipe.tags.length - 1 ? '' : ''}
                                                     </small>
