@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
 
-const Recipes = (props) => {
+const RecipeListSection = (props) => {
     return (
         <div>
             <div id={props.id} className="recipe-list-section">
@@ -27,7 +27,7 @@ const Recipes = (props) => {
     );
 };
 
-Recipes.propTypes = {
+RecipeListSection.propTypes = {
     itemList: PropTypes.arrayOf(PropTypes.shape({
         text: PropTypes.string,
         id: PropTypes.number,
@@ -36,11 +36,11 @@ Recipes.propTypes = {
     id: PropTypes.string.isRequired,
 };
 
-Recipes.defaultProps = {
+RecipeListSection.defaultProps = {
     itemList: PropTypes.arrayOf(PropTypes.shape({
         text: '',
         id: null,
     })),
 };
 
-export default Recipes;
+export default RecipeListSection;

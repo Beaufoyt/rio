@@ -77,7 +77,6 @@ class SearchForm extends PureComponent {
                             </div>
                             }
                         </div>
-                        <div className="search-details-placeholder" />
                     </div>
                 }
             </form>

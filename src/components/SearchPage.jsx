@@ -16,10 +16,6 @@ class SearchPage extends PureComponent {
         searchError: null,
     }
 
-    componentDidMount() {
-        console.log(this.props.recipes);
-    }
-
     componentWillReceiveProps(newProps) {
         const { recipes, recipesAreLoading } = newProps;
 
