@@ -1,0 +1,11 @@
+Font Awesome: https://fontawesome.com/icons?d=gallery
+
+SVG / PNG icons: https://www.flaticon.com/
+
+Unsplash: https://unsplash.com/
+
+React Lifecycle: https://reactjs.org/docs/react-component.html
+
+Sass: https://sass-lang.com/documentation/file.SASS_REFERENCE.html#nested_rules
+
+![wesmart](https://cdn.frankerfacez.com/emoticon/165742/4)

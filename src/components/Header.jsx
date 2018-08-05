@@ -41,7 +41,6 @@ const Header = () => {
 
     return (
         <div>
-
             <div id="header" className="header header-dark" />
             <div className="header-content-holder">
                 <BrandLogo />

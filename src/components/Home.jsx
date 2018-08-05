@@ -22,7 +22,7 @@ class Home extends PureComponent {
 
     render() {
         return (
-            <div style={{ scrollBehavior: 'smooth' }}>
+            <div>
                 <Hero />
                 <RecipesSection />
                 <LatestSection />
