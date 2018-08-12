@@ -29,7 +29,7 @@ class Hero extends PureComponent {
                         searchError: `No recipes found for '${this.state.searchString}'`,
                     });
                 } else {
-                    this.props.history.push('/search');
+                    this.props.history.push('/recipes');
                 }
             }
         }

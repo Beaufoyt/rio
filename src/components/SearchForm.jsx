@@ -15,8 +15,8 @@ class SearchForm extends PureComponent {
     }
 
     componentWillReceiveProps(newProps) {
-        if (this.state.searchString && newProps.searchString && this.props.searchString !== newProps.searchString) {
-            this.setState({ searchString: newProps.searchString });
+        if (newProps.searchString && this.props.searchString !== newProps.searchString) {
+            this.setState({ searchString: newProps.searchString, error: null });
         }
     }
 

@@ -28,6 +28,18 @@ body {
     vertical-align: text-top;
 }
 
+.no-margin-right {
+    margin-right: 0;
+}
+.no-margin-left {
+    margin-left: 0;
+}
+.no-margin-top {
+    margin-top: 0;
+}
+.no-margin-bottom {
+    margin-bottom: 0;
+}
 .margin-right {
     margin-right: 16px;
 }
@@ -81,4 +93,51 @@ body {
 }
 .pull-left {
     float: left;
+}
+
+.form-dropdown {
+    position: relative;
+    height: 38px;
+
+    ul {
+        list-style-type: none;
+        padding-left: 0;
+
+        a {
+            text-decoration: none !important;
+            color: #495057 !important;
+
+            &:hover {
+                color: #24292e !important;
+            }
+        }
+    }
+
+    hr {
+        margin: 0 !important;
+    }
+
+    .dropdown-caret {
+        position: absolute;
+        top: 9px;
+        right: 17px;
+    }
+}
+
+.form-group-inline {
+    select {
+        display: inline-block;
+    }
+
+    label {
+        margin-right: 8px;
+    }
+}
+
+.no-results {
+    text-align: center;
+
+    i {
+        margin-right: 5px;
+    }
 }
