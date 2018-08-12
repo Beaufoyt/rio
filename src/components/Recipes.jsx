@@ -4,24 +4,35 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
+import _ from 'lodash';
 
 import { searchRecipes } from '../actions/recipes';
+import categories from '../constants/categories';
 import scrollTop from '../helpers/scrollTop';
-import scrollToAnchor from '../helpers/scrollToAnchor';
-import { headerHeight } from '../constants/dimensions';
 
 import PureComponent from './PureComponent';
 import SearchForm from './SearchForm';
 
 class Recipes extends PureComponent {
     state = {
-        searchString: null,
         searchError: null,
+        currentCategory: '0',
+    }
+
+    componentWillMount() {
+        const { categoryId } = this.props;
+
+        if (categoryId) {
+            this.setState({ currentCategory: categoryId });
+        }
+
+        if (!this.props.recipes || !this.props.recipes.length) {
+            this.props.searchRecipes(this.props.searchString, this.state.currentCategory);
+        }
     }
 
     componentDidMount() {
         scrollTop();
-        scrollToAnchor(this.props.location, { x: 0, y: -headerHeight });
     }
 
     componentWillReceiveProps(newProps) {
@@ -29,7 +40,11 @@ class Recipes extends PureComponent {
 
         if (this.props.recipesAreLoading && !recipesAreLoading && recipes && recipes.length === 0) {
             this.setState({
-                searchError: `No recipes found for '${this.state.searchString}'`,
+                searchError: `No recipes found for '${this.props.searchString}'`,
+            });
+        } else {
+            this.setState({
+                searchError: null,
             });
         }
     }
@@ -39,8 +54,15 @@ class Recipes extends PureComponent {
             return;
         }
 
-        this.setState({ searchString, searchError: null });
-        this.props.searchRecipes(searchString);
+        this.props.searchRecipes(searchString, this.state.currentCategory);
+    }
+
+    handleChange = (e) => {
+        const { target: { name, value } } = e;
+
+        this.setState({ [name]: value }, () => {
+            this.props.searchRecipes(this.props.searchString, this.state.currentCategory);
+        });
     }
 
     searchRecipes = (e) => {
@@ -50,6 +72,17 @@ class Recipes extends PureComponent {
         if (searchString) {
             this.onSearchSubmit(searchString);
         }
+    }
+
+    mapCategories = () => {
+        return categories.map((category) => {
+            const { categoryId } = category;
+            return (
+                <option key={categoryId} value={category.id}>
+                    {_.startCase(categoryId)}
+                </option>
+            );
+        });
     }
 
     renderRecipeTiles = () => {
@@ -101,8 +134,8 @@ class Recipes extends PureComponent {
     }
 
     render() {
-        console.log(this.props.recipes);
         const { recipes } = this.props;
+        console.log(this.state.searchError);
 
         return (
             <div className="recipes-page">
@@ -110,15 +143,20 @@ class Recipes extends PureComponent {
                     <SearchForm
                         searchStyle=""
                         defaultValue={this.props.searchString}
-                        error={this.state.searchError}
                         isLoading={this.props.recipesAreLoading}
                         onSubmit={this.onSearchSubmit} />
                     <div className="form-group form-group-inline">
                         <label htmlFor="recipe-categories">Category</label>
-                        <select id="recipe-categories" className="form-control recipes-dropdown">
-                            <option>
-                            hello
+                        <select
+                            name="currentCategory"
+                            onChange={this.handleChange}
+                            value={this.state.currentCategory}
+                            id="recipe-categories"
+                            className="form-control recipes-dropdown">
+                            <option value={0}>
+                                All
                             </option>
+                            {this.mapCategories()}
                         </select>
                     </div>
                 </div>
@@ -136,26 +174,29 @@ class Recipes extends PureComponent {
 }
 
 Recipes.propTypes = {
-    location: PropTypes.shape({
-        pathname: PropTypes.string.isRequired,
-    }).isRequired,
+    // location: PropTypes.shape({
+    //     pathname: PropTypes.string.isRequired,
+    // }).isRequired,
     recipesAreLoading: PropTypes.bool.isRequired,
     recipes: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.number,
     })),
     searchRecipes: PropTypes.func.isRequired,
     searchString: PropTypes.string,
+    categoryId: PropTypes.string,
 };
 
 Recipes.defaultProps = {
     recipes: null,
     searchString: null,
+    categoryId: null,
 };
 
 const mapStateToProps = state => ({
     recipesAreLoading: state.recipes.areLoading,
     recipes: state.recipes.searchResults,
     searchString: state.recipes.searchString,
+    categoryId: state.recipes.categoryId,
 });
 
 const mapDispatchToProps = dispatch => (

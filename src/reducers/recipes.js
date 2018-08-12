@@ -7,6 +7,7 @@ const input = {
     areLoading: false,
     error: null,
     searchString: '',
+    categoryId: null,
 };
 
 export default function recipes(state = input, action) {
@@ -16,7 +17,7 @@ export default function recipes(state = input, action) {
     }
 
     case types.RECIPES_ARE_LOADING: {
-        return newState(state, { areLoading: true, searchString: action.searchString, error: null });
+        return newState(state, { areLoading: true, searchString: action.searchString, categoryId: action.categoryId });
     }
 
     default:

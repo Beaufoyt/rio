@@ -1,58 +1,48 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
+import recipes from '../constants/recipes';
 
 import BrandLogo from './BrandLogo';
 import NavLink from './NavLink';
+import PureComponent from './PureComponent';
 
-const Header = () => {
-    // componentDidMount() {
-    //     this.toggleHeaderBackground();
-    //     window.addEventListener('scroll', this.handleScroll);
-    // }
-    //
-    // componentWillUnmount() {
-    //     window.removeEventListener('scroll', this.handleScroll);
-    // }
+class Header extends PureComponent {
+    getLatestLink = () => {
+        const latestId = recipes.sort((a, b) => {
+            return new Date(b.date) - new Date(a.date);
+        })[0].id;
 
-    // getDocumentScrollOffset = () => {
-    //     const doc = document.documentElement;
-    //
-    //     return {
-    //         yOffset: (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0),
-    //         xOffset: (window.pageXOffset || doc.scrollLeft) - (doc.clientLeft || 0),
-    //     };
-    // }
+        return `/recipe/${latestId}`;
+    }
 
-    // toggleHeaderBackground = () => {
-    //     const header = document.getElementById('header');
-    //     const { yOffset } = this.getDocumentScrollOffset();
-    //
-    //     if (document.location.pathname === '/') {
-    //         if (yOffset >= 744 && !header.classList.contains('header-dark')) {
-    //             header.classList.toggle('header-dark');
-    //         } else if (yOffset < 744 && header.classList.contains('header-dark')) {
-    //             header.classList.toggle('header-dark');
-    //         }
-    //     }
-    // }
-    //
-    // handleScroll = () => {
-    //     this.toggleHeaderBackground();
-    // };
-
-    return (
-        <div>
-            <div id="header" className="header header-dark" />
-            <div className="header-content-holder">
-                <BrandLogo />
-                <div className="header-nav">
-                    <NavLink text="Latest" path="/#latest" />
-                    <NavLink text="Recipes" path="/recipes" />
-                    <NavLink text="About" path="#" />
-                    <NavLink text="Contact" path="#" />
+    render() {
+        return (
+            <div>
+                { this.props.isGlobalLoading &&
+                    <div className="global-loader" /> }
+                <div id="header" className="header header-dark" />
+                <div className="header-content-holder">
+                    <BrandLogo />
+                    <div className="header-nav">
+                        <NavLink text="Latest" path={this.getLatestLink()} />
+                        <NavLink text="Recipes" path="/recipes" />
+                        <NavLink text="About" path="#" />
+                        <NavLink text="Contact" path="#" />
+                    </div>
                 </div>
             </div>
-        </div>
-    );
+        );
+    }
+}
+
+Header.propTypes = {
+    isGlobalLoading: PropTypes.bool.isRequired,
 };
 
-export default Header;
+const mapStateToProps = state => ({
+    isGlobalLoading: state.ui.globalLoading,
+});
+
+export default connect(mapStateToProps, null)(Header);

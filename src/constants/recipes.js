@@ -37,6 +37,7 @@ const recipes = [
                 link: '/',
             },
         ],
+        categoryId: 1,
         date: '2018-07-07T21:46:54.199Z',
     },
     {
@@ -68,6 +69,7 @@ const recipes = [
                 link: '/',
             },
         ],
+        categoryId: 2,
         date: '2018-07-01T21:46:54.199Z',
     },
     {
@@ -105,11 +107,8 @@ const recipes = [
                 link: '/',
             },
         ],
+        categoryId: 3,
         date: '2018-06-27T21:46:54.199Z',
-    },
-    {
-        title: '2',
-        date: '2018-06-05T21:42:18.983Z',
     },
 ];
 

@@ -95,10 +95,10 @@
     }
 
     .recipes-controls-container {
-        margin-bottom: 0;
         display: flex;
         justify-content: space-between;
         height: 50px;
+        margin: 0 -10px;
 
         .form-search {
             width: 400px;
@@ -111,23 +111,6 @@
 
     hr {
         margin: 32px 0;
-    }
-
-    .recipe-list-section {
-        margin: 70px;
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-
-            li {
-                a {
-                    color: rgba(0,0,0,0.9);
-                    text-decoration: none;
-                }
-            }
-
-        }
     }
 }
 

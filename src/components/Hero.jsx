@@ -47,7 +47,7 @@ class Hero extends PureComponent {
                     <h2>Aromatherapy & Natural Cosmetic Recipes</h2>
                     <SearchForm
                         error={this.state.searchError}
-                        isLoading={this.props.recipesAreLoading}
+                        isLoading={!this.props.isGlobalLoading && this.props.recipesAreLoading}
                         onSubmit={this.onSearchSubmit} />
                 </div>
             </div>
@@ -57,6 +57,7 @@ class Hero extends PureComponent {
 
 Hero.propTypes = {
     recipesAreLoading: PropTypes.bool.isRequired,
+    isGlobalLoading: PropTypes.bool.isRequired,
     recipes: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.number,
     })),
@@ -73,6 +74,7 @@ Hero.defaultProps = {
 
 const mapStateToProps = state => ({
     recipesAreLoading: state.recipes.areLoading,
+    isGlobalLoading: state.ui.globalLoading,
     recipes: state.recipes.searchResults,
 });
 
