@@ -28,8 +28,7 @@ class Header extends PureComponent {
                     <div className="header-nav">
                         <NavLink text="Latest" path={this.getLatestLink()} />
                         <NavLink text="Recipes" path="/recipes" />
-                        <NavLink text="About" path="#" />
-                        <NavLink text="Contact" path="#" />
+                        <NavLink text="Inventory" path="/inventory" />
                     </div>
                 </div>
             </div>
