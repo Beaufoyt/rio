@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import recipes from '../constants/recipes';
 
 import BrandLogo from './BrandLogo';
+import BrandTitle from './BrandTitle';
 import NavLink from './NavLink';
 import PureComponent from './PureComponent';
 
@@ -25,6 +26,7 @@ class Header extends PureComponent {
                 <div id="header" className="header header-dark" />
                 <div className="header-content-holder">
                     <BrandLogo />
+                    <BrandTitle />
                     <div className="header-nav">
                         <NavLink text="Latest" path={this.getLatestLink()} />
                         <NavLink text="Recipes" path="/recipes" />

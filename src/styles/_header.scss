@@ -1,6 +1,5 @@
 .header {
     height: 56px;
-    color: rgba(255,255,255,0.75);
     position: fixed;
     width: 100%;
     text-align: right;
@@ -12,38 +11,11 @@
     background-color: $bg-dark;
 }
 
-.brand-logo {
-    height: 32px;
-    line-height: 32px;
-    font-weight: bold;
-    font-size: 16px;
-    color: rgba(255,255,255,0.75);
-    float: left;
-    font-size: 22px;
-
-    span {
-       color: white;
-       margin-left: 10px;
-       font-family: 'Sedgwick Ave', Helvetica;
-       vertical-align: middle;
-   }
-
-   img {
-       vertical-align: top;
-       height: 100%;
-   }
-
-    &:hover {
-        color: rgba(255,255,255,0.75);
-        text-decoration: none;
-    }
-}
 
 .header-nav-link {
     display: inline-block;
     color: rgba(255,255,255,0.75);
     padding: 0 8px;
-    font-weight: 300;
     line-height: 32px;
     text-transform: uppercase;
     vertical-align: sub;

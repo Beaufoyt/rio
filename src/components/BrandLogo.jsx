@@ -6,9 +6,6 @@ const BrandLogo = () => {
     return (
         <a href="/" className="brand-logo">
             <img src={Leaf} alt="brand" />
-            <span>
-                {'Rio\'s Den'}
-            </span>
         </a>
     );
 };
