@@ -1,1 +1,14 @@
+.language-switcher {
+    margin: 0 16px;
+    height: 32px;
+    line-height: 20px;
 
+    button {
+        box-shadow: none !important;
+    }
+
+    img {
+        vertical-align: baseline;
+        height: 18px;
+    }
+}

@@ -61,7 +61,7 @@ class SearchForm extends PureComponent {
                 <i className={`search-icon fa fa-${this.props.isLoading ? 'spinner fa-spin' : 'search'}`} />
                 <input
                     name="searchString"
-                    placeholder="Enter recipe here"
+                    placeholder={this.props.placeholder}
                     value={this.state.searchString}
                     onChange={this.handleChange}
                     className={`search-field ${isDetailsActive ? 'details' : ''} border`}
@@ -91,6 +91,7 @@ SearchForm.propTypes = {
     defaultValue: PropTypes.string,
     searchStyle: PropTypes.string,
     searchString: PropTypes.string,
+    placeholder: PropTypes.string,
 };
 
 SearchForm.defaultProps = {
@@ -100,6 +101,7 @@ SearchForm.defaultProps = {
     defaultValue: '',
     searchStyle: 'shadow-lg',
     searchString: '',
+    placeholder: 'Enter search term here',
 };
 
 const mapStateToProps = state => ({

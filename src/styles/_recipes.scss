@@ -75,6 +75,21 @@
     }
 }
 
+.recipes-controls-container {
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    margin: 0 -10px;
+
+    .form-search {
+        width: 400px;
+    }
+
+    .recipes-dropdown {
+        width: 200px;
+    }
+}
+
 .recipes-page {
     padding: 88px 70px 32px 70px;
 
@@ -91,21 +106,6 @@
 
         h5 {
             margin-bottom: 8px !important;
-        }
-    }
-
-    .recipes-controls-container {
-        display: flex;
-        justify-content: space-between;
-        height: 50px;
-        margin: 0 -10px;
-
-        .form-search {
-            width: 400px;
-        }
-
-        .recipes-dropdown {
-            width: 200px;
         }
     }
 

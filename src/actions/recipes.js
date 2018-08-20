@@ -1,6 +1,9 @@
+import axios from 'axios';
+
 import { globalLoader } from './ui';
 import types from '../constants/actionTypes';
 import recipes from '../constants/recipes';
+import config from '../config';
 
 export const addToCount = amount => ({ type: types.NUMBER_COUNTER_ADD, amount });
 
@@ -40,5 +43,27 @@ export function searchRecipes(searchString, categoryId, globalLoaderEnabled = fa
                 dispatch(globalLoader(false));
             }
         }, 3000);
+    };
+}
+
+const fetchCategoriesSuccess = categories => ({ type: types.FETCH_CATEGORIES_SUCCESS, categories });
+const fetchCategoriesIsLoading = isLoading => ({ type: types.FETCH_CATEGORIES_IS_LOADING, isLoading });
+
+export function fetchCategories() {
+    return async (dispatch) => {
+        dispatch(fetchCategoriesIsLoading(true));
+
+        try {
+            const response = await axios.get(`${config.baseApi}/categories`);
+            dispatch(fetchCategoriesSuccess(response.data));
+        } catch (err) {
+            dispatch(fetchCategoriesIsLoading(false));
+        }
+        // axios.get(`${config.baseApi}/categories`).then((categories) => {
+        //     dispatch(fetchCategoriesSuccess(categories));
+        // }, (err) => {
+        //     console.log(err);
+        //     dispatch(fetchCategoriesIsLoading(false));
+        // });
     };
 }

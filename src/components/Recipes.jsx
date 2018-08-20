@@ -142,6 +142,7 @@ class Recipes extends PureComponent {
                 <div className="recipes-controls-container">
                     <SearchForm
                         searchStyle=""
+                        placeholder="Find a recipe"
                         defaultValue={this.props.searchString}
                         isLoading={this.props.recipesAreLoading}
                         onSubmit={this.onSearchSubmit} />
