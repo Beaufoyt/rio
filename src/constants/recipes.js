@@ -73,6 +73,52 @@ const recipes = [
         date: '2018-07-01T21:46:54.199Z',
     },
     {
+        id: 2,
+        title: 'Simply BB Cream',
+        description: `The promise of a perfect complexion thanks to this BB
+        cream full of unifying and light reflecting actives. With such an easy
+        recipe, this BB Cream is the best ally for a natural beauty.`,
+        ingredients: [
+            'Cream Emulsifier - 4g',
+            'Apricot Kernel vegetable oil - 4g',
+            'Mineral water - 37g',
+            'Light powder - 2.5g',
+            'Concentrated Radiance & Brightness - 1.5g',
+            'Nude beige Mica - 2 spoons PINCH',
+            'Cosgard preservative - 10 drops',
+        ],
+        steps: [
+            `1. Transfer the Cream Emulsifier, Apricot Kernel vegetable oil and
+            the Water in a bowl and put it over a pan of boiling water. Slowly mix
+            with a small whisk until it reaches 80°C.`,
+            `2. Once the mix reaches 80°C, take the bowl away from the boiling
+            water and whisk vigorously for 3 minutes until the mix thickens and
+            becomes homogeneous.`,
+            `3. Put the bowl on top of a pan full of cold water and keep whisking
+            until the mix is cold.`,
+            `4. Add the rest of the ingredients one by one and make sure the mix
+            is homogeneous by whisking between each add.`,
+            '5. Transfer the mix in the container.',
+        ],
+        source: { text: 'aroma-zone.com', link: 'https://www.aroma-zone.com/' },
+        tags: [
+            {
+                text: 'make-up',
+                link: '/',
+            },
+            {
+                text: 'foundation',
+                link: '/',
+            },
+            {
+                text: 'face',
+                link: '/',
+            },
+        ],
+        categoryId: 2,
+        date: '2018-08-21T21:46:54.199Z',
+    },
+    {
         id: 891,
         title: 'Munchkin',
         description: `Stare at imaginary bug scratch but chase the pig around the house and swat turds around the house

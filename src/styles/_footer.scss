@@ -1,21 +1,34 @@
 .footer {
     background-color: $bg-dark;
     color: white;
-    padding: 20px;
+    padding: 30px;
     text-align: center;
+
     hr {
         padding: 0;
         background-color: #fff;
         width: 50%;
     }
 
-    h2 {
-        margin: 0;
-        line-height: 1em;
-    }
-
     h6 {
-        padding: 1em;
+        padding-top: 1em;
+        margin: 0;
     }
 
+}
+
+@media (max-width: 768px) {
+    .footer {
+        hr {
+            width: 60%;
+        }
+    }
+}
+
+@media (max-width: 576px) {
+    .footer {
+        hr {
+            width: 70%;
+        }
+    }
 }
