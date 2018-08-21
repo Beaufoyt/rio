@@ -1,0 +1,16 @@
+module.exports = {
+    'latest-en': 'Latest',
+    'latest-fr': 'Dernier',
+    'recipes-en': 'Recipes',
+    'recipes-fr': 'Recettes',
+    'inventory-en': 'Inventory',
+    'inventory-fr': 'Inventaire',
+    'inventory-search-en': 'Search the tool chest',
+    'inventory-search-fr': 'Rechercher la boîte à outils',
+    'all-en': 'All',
+    'all-fr': 'Tout',
+    'category-en': 'Category',
+    'category-fr': 'Catégorie',
+    'strapline-en': 'Aromatherapy & Natural Cosmetic Recipes',
+    'strapline-fr': 'Aromathérapie et recettes cosmétiques naturelles',
+};
