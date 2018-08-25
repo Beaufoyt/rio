@@ -1,8 +1,63 @@
 .inventory-container {
-    padding: 88px 70px 32px 70px;
+    padding: 88px 30px 32px 30px;
     text-align: center;
 
     hr {
         margin: 32px 0;
+    }
+}
+
+.inventory-controls-container {
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+
+    .form-search {
+        width: 400px;
+    }
+
+    .recipes-dropdown {
+        width: 200px;
+    }
+}
+
+.inventory-grid-item {
+    padding: 10px 20px;
+
+    .inventory-item {
+        display: inline-block;
+        width: 100%;
+        border: 1px solid #dee2e6;
+        border-radius: 3px;
+        height: 110px;
+        padding: 20px;
+        position: relative;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+
+        .scientific-name {
+            font-weight: 300;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .name {
+            display: inline-block;
+            font-weight: 700;
+            margin-bottom: 0;
+        }
+
+        .stock-indicator {
+            position: absolute;
+            bottom: 20px;
+            margin-bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+
+            i {
+                margin-right: 5px;
+                font-size: 12px;
+            }
+        }
     }
 }

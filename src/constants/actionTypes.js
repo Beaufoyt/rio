@@ -8,4 +8,6 @@ export default keyMirror({
     SET_LANGUAGE: null,
     FETCH_CATEGORIES_IS_LOADING: null,
     FETCH_CATEGORIES_SUCCESS: null,
+    FETCH_INVENTORY_IS_LOADING: null,
+    FETCH_INVENTORY_SUCCESS: null,
 });

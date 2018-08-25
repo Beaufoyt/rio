@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 
 import { fetchCategories } from '../actions/recipes';
+import { fetchInventory } from '../actions/inventory';
 import scrollTop from '../helpers/scrollTop';
 import translator from '../helpers/translator';
 
@@ -22,6 +23,9 @@ class Inventory extends PureComponent {
 
         if (categoryId) {
             this.setState({ currentCategory: categoryId });
+            this.props.fetchInventory(categoryId);
+        } else {
+            this.props.fetchInventory();
         }
 
         this.props.fetchCategories();
@@ -29,6 +33,17 @@ class Inventory extends PureComponent {
 
     componentDidMount() {
         scrollTop();
+    }
+
+    componentWillUpdate(newProps, newState) {
+        let currentCategory = parseInt(newState.currentCategory, 10);
+
+        currentCategory = currentCategory === 26 ? null : currentCategory;
+        currentCategory = currentCategory === 0 ? undefined : currentCategory;
+
+        if (this.state.currentCategory !== newState.currentCategory) {
+            this.props.fetchInventory(currentCategory);
+        }
     }
 
     handleChange = (e) => {
@@ -59,11 +74,60 @@ class Inventory extends PureComponent {
         });
     }
 
+    renderStockIndicator = (inStock) => {
+        switch (inStock) {
+        case 0:
+            return (
+                <h5 className="stock-indicator" style={{ color: '#721c24' }}>
+                    <i className="fa fa-times" />
+                    Out of stock
+                </h5>
+            );
+        case 1:
+            return (
+                <h5 className="stock-indicator" style={{ color: '#155724' }}>
+                    <i className="fa fa-check" />
+                    In stock
+                </h5>
+            );
+        default:
+            return (
+                <h5 className="stock-indicator">
+                    <i className="fa fa-infinity" />
+                    Infinite
+                </h5>
+            );
+        }
+    }
+
+    renderInventory = () => {
+        const { inventory, activeLanguage } = this.props;
+
+        return inventory && inventory.map((inventoryItem) => {
+            const { scientificName, inStock } = inventoryItem;
+
+            return (
+                <div className="inventory-grid-item col-sm-12 col-md-6 col-lg-4 col-xl-3 inline">
+                    <div className=" inventory-item" style={{ cursor: inStock === null ? 'initial' : 'pointer' }}>
+                        <h5 className="name">
+                            {inventoryItem[`name${_.startCase(activeLanguage)}`]}
+                        </h5>
+                        { scientificName &&
+                            <h6 className="scientific-name">{scientificName}</h6>
+                        }
+                        { this.renderStockIndicator(inStock) }
+                    </div>
+                </div>
+            );
+        });
+    }
+
     render() {
         return (
             <div className="inventory-container">
-                <div className="recipes-controls-container">
+                <div className="inventory-controls-container">
                     <SearchForm
+                        isLoading={this.props.fetchInventoryIsLoading}
                         searchStyle=""
                         placeholder={translator('inventory-search', this.props.activeLanguage)}
                         defaultValue={this.props.searchString}
@@ -85,6 +149,11 @@ class Inventory extends PureComponent {
                     </div>
                 </div>
                 <hr />
+                <div className="container">
+                    <div className="row">
+                        {this.renderInventory()}
+                    </div>
+                </div>
             </div>
         );
     }
@@ -93,10 +162,15 @@ class Inventory extends PureComponent {
 Inventory.propTypes = {
     searchString: PropTypes.string,
     categoryId: PropTypes.string,
+    fetchInventoryIsLoading: PropTypes.bool.isRequired,
     fetchCategories: PropTypes.func.isRequired,
+    fetchInventory: PropTypes.func.isRequired,
     activeLanguage: PropTypes.string.isRequired,
     fetchCategoriesIsLoading: PropTypes.bool.isRequired,
     categories: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number,
+    })),
+    inventory: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.number,
     })),
 };
@@ -105,6 +179,7 @@ Inventory.defaultProps = {
     searchString: null,
     categoryId: null,
     categories: null,
+    inventory: null,
 };
 
 const mapStateToProps = state => ({
@@ -113,10 +188,12 @@ const mapStateToProps = state => ({
     fetchCategoriesIsLoading: state.recipes.fetchCategoriesIsLoading,
     categories: state.recipes.categories,
     activeLanguage: state.language.activeLanguage,
+    fetchInventoryIsLoading: state.inventory.fetchIsLoading,
+    inventory: state.inventory.inventory,
 });
 
 const mapDispatchToProps = dispatch => (
-    bindActionCreators({ fetchCategories }, dispatch)
+    bindActionCreators({ fetchCategories, fetchInventory }, dispatch)
 );
 
 export default connect(mapStateToProps, mapDispatchToProps)(Inventory);
