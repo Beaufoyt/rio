@@ -53,11 +53,11 @@ const Recipe = (props) => {
                 <p className="margin-bottom">
                     {props.recipe.description}
                 </p>
-                <i className="fa fa-flask margin-right-half v-tt" />
-                <h5 className="inline">Ingredients</h5>
+                <i className="fa fa-flask margin-right-half" />
+                <h5 className="inline v-b">Ingredients</h5>
                 {mapIngredients()}
-                <i className="fa fa-list-ol margin-right-half v-tt" />
-                <h5 className="inline">Step by step</h5>
+                <i className="fa fa-list-ol margin-right-half" />
+                <h5 className="inline v-b">Step by step</h5>
                 {mapSteps()}
             </div>
             <div className="recipe-footer">

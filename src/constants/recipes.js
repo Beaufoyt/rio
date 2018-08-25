@@ -85,7 +85,7 @@ const recipes = [
             'Light powder - 2.5g',
             'Concentrated Radiance & Brightness - 1.5g',
             'Nude beige Mica - 2 spoons PINCH',
-            'Cosgard preservative - 10 drops',
+            'Cosgard - 10 drops',
         ],
         steps: [
             `1. Transfer the Cream Emulsifier, Apricot Kernel vegetable oil and
