@@ -8,6 +8,7 @@ import { searchRecipes } from '../actions/recipes';
 
 import SearchForm from './SearchForm';
 import PureComponent from './PureComponent';
+import Translator from './Translator';
 
 class Hero extends PureComponent {
     state = {
@@ -44,7 +45,7 @@ class Hero extends PureComponent {
         return (
             <div className="hero-banner">
                 <div className="content">
-                    <h2>Aromatherapy & Natural Cosmetic Recipes</h2>
+                    <h2><Translator languageKey="strapline" /></h2>
                     <SearchForm
                         error={this.state.searchError}
                         isLoading={!this.props.isGlobalLoading && this.props.recipesAreLoading}

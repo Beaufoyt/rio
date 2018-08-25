@@ -11,6 +11,7 @@ import BrandLogo from './BrandLogo';
 import BrandTitle from './BrandTitle';
 import NavLink from './NavLink';
 import PureComponent from './PureComponent';
+import Translator from './Translator';
 import en from '../assets/united-kingdom.svg';
 import fr from '../assets/france.svg';
 
@@ -41,13 +42,35 @@ class Header extends PureComponent {
                     <BrandLogo />
                     <BrandTitle />
                     <div className="header-nav">
-                        <div name="hello" className="btn-group language-switcher" role="group" aria-label="Basic example">
-                            <button type="button" name="en" onClick={this.handleChange} className={classnames('btn btn-secondary', { active: this.isLanguageActive('en') })}><img src={en} alt="en" /></button>
-                            <button type="button" name="fr" onClick={this.handleChange} className={classnames('btn btn-secondary', { active: this.isLanguageActive('fr') })}><img src={fr} alt="fr" /></button>
+                        <div
+                            name="hello"
+                            className="btn-group language-switcher"
+                            role="group"
+                            aria-label="Basic example">
+                            <button
+                                type="button"
+                                name="en"
+                                onClick={this.handleChange}
+                                className={classnames('btn btn-secondary', { active: this.isLanguageActive('en') })}>
+                                <img src={en} alt="en" />
+                            </button>
+                            <button
+                                type="button"
+                                name="fr"
+                                onClick={this.handleChange}
+                                className={classnames('btn btn-secondary', { active: this.isLanguageActive('fr') })}>
+                                <img src={fr} alt="fr" />
+                            </button>
                         </div>
-                        <NavLink text="Latest" path={this.getLatestLink()} />
-                        <NavLink text="Recipes" path="/recipes" />
-                        <NavLink text="Inventory" path="/inventory" />
+                        <NavLink path={this.getLatestLink()}>
+                            <Translator languageKey="latest" />
+                        </NavLink>
+                        <NavLink path="/recipes">
+                            <Translator languageKey="recipes" />
+                        </NavLink>
+                        <NavLink path="/inventory">
+                            <Translator languageKey="inventory" />
+                        </NavLink>
                     </div>
                 </div>
             </div>

@@ -23,7 +23,6 @@ class LatestSection extends PureComponent {
 
         return (
             <div id="latest" className="latest-section" >
-                <hr />
                 <Recipe recipe={latestRecipe} />
             </div>
         );

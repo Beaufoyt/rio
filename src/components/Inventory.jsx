@@ -6,9 +6,11 @@ import _ from 'lodash';
 
 import { fetchCategories } from '../actions/recipes';
 import scrollTop from '../helpers/scrollTop';
+import translator from '../helpers/translator';
 
 import PureComponent from './PureComponent';
 import SearchForm from './SearchForm';
+import Translator from './Translator';
 
 class Inventory extends PureComponent {
     state = {
@@ -63,11 +65,11 @@ class Inventory extends PureComponent {
                 <div className="recipes-controls-container">
                     <SearchForm
                         searchStyle=""
-                        placeholder={this.props.activeLanguage === 'en' ? 'Search the tool chest' : 'rechercher la boîte à outils'}
+                        placeholder={translator('inventory-search', this.props.activeLanguage)}
                         defaultValue={this.props.searchString}
                         onSubmit={this.onSearchSubmit} />
                     <div className="form-group form-group-inline">
-                        <label htmlFor="recipe-categories">Category</label>
+                        <label htmlFor="recipe-categories"><Translator languageKey="category" /></label>
                         <select
                             disabled={this.props.fetchCategoriesIsLoading}
                             name="currentCategory"
@@ -76,7 +78,7 @@ class Inventory extends PureComponent {
                             id="recipe-categories"
                             className="form-control recipes-dropdown">
                             <option value={0}>
-                                { this.props.activeLanguage === 'en' ? 'All' : 'Tout' }
+                                <Translator languageKey="all" />
                             </option>
                             {this.mapCategories()}
                         </select>
@@ -89,9 +91,6 @@ class Inventory extends PureComponent {
 }
 
 Inventory.propTypes = {
-    // location: PropTypes.shape({
-    //     pathname: PropTypes.string.isRequired,
-    // }).isRequired,
     searchString: PropTypes.string,
     categoryId: PropTypes.string,
     fetchCategories: PropTypes.func.isRequired,

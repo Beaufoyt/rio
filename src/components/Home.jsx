@@ -4,7 +4,6 @@ import scrollTop from '../helpers/scrollTop';
 
 import PureComponent from './PureComponent';
 import Hero from './Hero';
-import RecipesSection from './RecipesSection';
 import LatestSection from './LatestSection';
 
 class Home extends PureComponent {
@@ -16,7 +15,6 @@ class Home extends PureComponent {
         return (
             <div>
                 <Hero />
-                <RecipesSection />
                 <LatestSection />
             </div>
         );

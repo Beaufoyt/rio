@@ -5,14 +5,18 @@ import { Link } from 'react-router-dom';
 const NavLink = (props) => {
     return (
         <Link className="header-nav-link" href={props.path} to={props.path}>
-            {props.text}
+            {props.children}
         </Link>
     );
 };
 
 NavLink.propTypes = {
-    text: PropTypes.string.isRequired,
+    children: PropTypes.element,
     path: PropTypes.string.isRequired,
+};
+
+NavLink.defaultProps = {
+    children: null,
 };
 
 export default NavLink;
