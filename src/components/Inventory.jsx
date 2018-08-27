@@ -20,6 +20,7 @@ class Inventory extends PureComponent {
     state = {
         currentCategory: '0',
         activeInventoryItem: null,
+        controlsExpanded: false,
     }
 
     componentWillMount() {
@@ -97,6 +98,10 @@ class Inventory extends PureComponent {
         this.setState({ [name]: value });
     }
 
+    toggleControls = () => {
+        this.setState({ controlsExpanded: !this.state.controlsExpanded });
+    }
+
     searchRecipes = (e) => {
         e.preventDefault();
         const searchString = e.target.id;
@@ -137,8 +142,28 @@ class Inventory extends PureComponent {
         });
     }
 
+    renderControls = (type) => {
+        return (
+            <div className={`form-group form-group-inline ${type}-controls`}>
+                <label htmlFor="recipe-categories"><Translator languageKey="category" /></label>
+                <select
+                    disabled={this.props.fetchCategoriesIsLoading}
+                    name="currentCategory"
+                    onChange={this.handleChange}
+                    value={this.state.currentCategory}
+                    id="recipe-categories"
+                    className="form-control recipes-dropdown">
+                    <option value={0}>
+                        <Translator languageKey="all" />
+                    </option>
+                    {this.mapCategories()}
+                </select>
+            </div>
+        );
+    }
+
     render() {
-        const { activeInventoryItem } = this.state;
+        const { activeInventoryItem, controlsExpanded } = this.state;
 
         return (
             <div className="inventory-container">
@@ -149,22 +174,13 @@ class Inventory extends PureComponent {
                         placeholder={translator('inventory-search', this.props.activeLanguage)}
                         defaultValue={this.props.searchString}
                         onSubmit={this.onSearchSubmit} />
-                    <div className="form-group form-group-inline">
-                        <label htmlFor="recipe-categories"><Translator languageKey="category" /></label>
-                        <select
-                            disabled={this.props.fetchCategoriesIsLoading}
-                            name="currentCategory"
-                            onChange={this.handleChange}
-                            value={this.state.currentCategory}
-                            id="recipe-categories"
-                            className="form-control recipes-dropdown">
-                            <option value={0}>
-                                <Translator languageKey="all" />
-                            </option>
-                            {this.mapCategories()}
-                        </select>
-                    </div>
+                    {this.renderControls('desktop')}
+                    <button className="btn btn-light btn-controls" onClick={this.toggleControls}>
+                        <i className={`fa fa-${controlsExpanded ? 'times' : 'ellipsis-v'}`} />
+                    </button>
                 </div>
+                { controlsExpanded &&
+                    this.renderControls('mobile') }
                 <hr />
                 <div className="container">
                     <div className="row">
@@ -187,9 +203,7 @@ class Inventory extends PureComponent {
                             ))}
                             tabIndex={-1}
                             activeLanguage={this.props.activeLanguage} />
-                    </div>
-
-                }
+                    </div> }
             </div>
         );
     }

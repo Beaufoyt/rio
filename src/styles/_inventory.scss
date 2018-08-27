@@ -19,6 +19,31 @@
     .recipes-dropdown {
         width: 200px;
     }
+
+    .btn-controls {
+        width: 50px;
+        padding: 0;
+        background-color: transparent;
+        border: none;
+        font-size: 20px;
+        line-height: 50px;
+        cursor: pointer;
+        display: none;
+
+        &:hover {
+            background-color: #f8f9fa;
+        }
+    }
+}
+
+.mobile-controls {
+    display: none;
+    margin-top: 16px;
+    text-align: left;
+
+    select {
+        width: 300px;
+    }
 }
 
 .inventory-grid-item {
@@ -119,5 +144,27 @@
         &:focus {
             outline: none;
         }
+    }
+}
+
+@media (max-width: 768px) {
+    .inventory-container {
+        hr {
+            margin: 16px 0;
+        }
+    }
+
+    .desktop-controls {
+        display: none;
+    }
+
+    .inventory-controls-container {
+        .btn-controls {
+            display: initial;
+        }
+    }
+
+    .mobile-controls {
+        display: block;
     }
 }
