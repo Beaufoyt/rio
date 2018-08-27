@@ -7,10 +7,18 @@
     transition: background-color linear 0.2s;
 }
 
+.btn-header-menu {
+    height: 32px;
+    padding: 0;
+    line-height: 32px;
+    width: 32px;
+    background-color: transparent;
+    display: none;
+}
+
 .header-dark {
     background-color: $bg-dark;
 }
-
 
 .header-nav-link {
     display: inline-block;
@@ -27,7 +35,7 @@
 }
 
 .header-content-holder {
-    margin: 12px 4px;
+    margin: 12px 0;
     padding: 0 16px;
     height: 32px;
     position: fixed;
@@ -41,5 +49,52 @@
     .brand-title {
         margin-left: 12px;
         vertical-align: baseline;
+    }
+
+    .brand-logo {
+        img {
+            margin-left: 8px;
+        }
+    }
+}
+
+.mobile-menu {
+    display: none;
+    position: fixed;
+    top: 56px;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+
+    .mobile-menu-link {
+        margin-right: 8px;
+        text-align: right;
+
+        button {
+            border: none;
+            background-color: transparent;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .desktop-menu {
+        display: none;
+    }
+
+    .mobile-menu {
+        display: initial;
+    }
+
+    .btn-header-menu {
+        display: initial;
+    }
+
+    .header-content-holder {
+        .brand-logo {
+            img {
+                margin-left: 0;
+            }
+        }
     }
 }

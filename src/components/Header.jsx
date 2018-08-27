@@ -16,12 +16,44 @@ import en from '../assets/united-kingdom.svg';
 import fr from '../assets/france.svg';
 
 class Header extends PureComponent {
-    getLatestLink = () => {
+    state = {
+        mobileMenuActive: false,
+    }
+
+    getLatestPath = () => {
         const latestId = recipes.sort((a, b) => {
             return new Date(b.date) - new Date(a.date);
         })[0].id;
 
         return `/recipe/${latestId}`;
+    }
+
+    getLatestLink = () => {
+        return (
+            <NavLink path={this.getLatestPath()}>
+                <Translator languageKey="latest" />
+            </NavLink>
+        );
+    }
+
+    getRecipesLink = () => {
+        return (
+            <NavLink path="/recipes">
+                <Translator languageKey="recipes" />
+            </NavLink>
+        );
+    }
+
+    getInventoryLink = () => {
+        return (
+            <NavLink path="/inventory">
+                <Translator languageKey="inventory" />
+            </NavLink>
+        );
+    }
+
+    closeMobileMenu = () => {
+        this.setState({ mobileMenuActive: false });
     }
 
     handleChange = (e) => {
@@ -32,7 +64,13 @@ class Header extends PureComponent {
         return this.props.activeLanguage === language;
     }
 
+    toggleMobileMenu = () => {
+        this.setState({ mobileMenuActive: !this.state.mobileMenuActive });
+    }
+
     render() {
+        const { mobileMenuActive } = this.state;
+
         return (
             <div>
                 { this.props.isGlobalLoading &&
@@ -43,7 +81,6 @@ class Header extends PureComponent {
                     <BrandTitle />
                     <div className="header-nav">
                         <div
-                            name="hello"
                             className="btn-group language-switcher"
                             role="group"
                             aria-label="Basic example">
@@ -62,15 +99,35 @@ class Header extends PureComponent {
                                 <img src={fr} alt="fr" />
                             </button>
                         </div>
-                        <NavLink path={this.getLatestLink()}>
-                            <Translator languageKey="latest" />
-                        </NavLink>
-                        <NavLink path="/recipes">
-                            <Translator languageKey="recipes" />
-                        </NavLink>
-                        <NavLink path="/inventory">
-                            <Translator languageKey="inventory" />
-                        </NavLink>
+                        <span className="desktop-menu">
+                            {this.getLatestLink()}
+                            {this.getRecipesLink()}
+                            {this.getInventoryLink()}
+                        </span>
+                        <button
+                            type="button"
+                            onClick={this.toggleMobileMenu}
+                            className="btn btn-secondary btn-header-menu">
+                            <i className={`fa fa-${mobileMenuActive ? 'times' : 'bars'}`} />
+                        </button>
+                        { mobileMenuActive &&
+                            <div className="mobile-menu">
+                                <div className="mobile-menu-link margin-top">
+                                    <button onClick={this.closeMobileMenu}>
+                                        {this.getLatestLink()}
+                                    </button>
+                                </div>
+                                <div className="mobile-menu-link">
+                                    <button onClick={this.closeMobileMenu}>
+                                        {this.getRecipesLink()}
+                                    </button>
+                                </div>
+                                <div className="mobile-menu-link margin-bottom">
+                                    <button onClick={this.closeMobileMenu}>
+                                        {this.getInventoryLink()}
+                                    </button>
+                                </div>
+                            </div> }
                     </div>
                 </div>
             </div>
