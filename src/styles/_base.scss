@@ -8,6 +8,10 @@ body {
     overflow-y: scroll;
 }
 
+.no-scroll {
+    overflow: hidden !important;
+}
+
 h1 {
     margin-bottom: 1em; /* 36 / 36 */
     font-size: 3em; /* 36 / 12 */
@@ -172,6 +176,16 @@ a {
 }
 .pull-left {
     float: left;
+}
+
+.page-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 100;
+    background-color: rgba(0,0,0,0.6);
 }
 
 .form-dropdown {

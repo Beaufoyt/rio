@@ -12,16 +12,21 @@ import translator from '../helpers/translator';
 import PureComponent from './PureComponent';
 import SearchForm from './SearchForm';
 import Translator from './Translator';
+import InventoryCard from './InventoryCard';
+
+const ESCAPE_KEY = 27;
 
 class Inventory extends PureComponent {
     state = {
         currentCategory: '0',
+        activeInventoryItem: null,
     }
 
     componentWillMount() {
         const { categoryId } = this.props;
+        const parsedCategoryId = parseInt(categoryId, 10);
 
-        if (categoryId) {
+        if (parsedCategoryId) {
             this.setState({ currentCategory: categoryId });
             this.props.fetchInventory(categoryId);
         } else {
@@ -29,7 +34,9 @@ class Inventory extends PureComponent {
         }
 
         this.props.fetchCategories();
+        document.addEventListener('keydown', this.handleKeyDown);
     }
+
 
     componentDidMount() {
         scrollTop();
@@ -44,6 +51,39 @@ class Inventory extends PureComponent {
         if (this.state.currentCategory !== newState.currentCategory) {
             this.props.fetchInventory(currentCategory);
         }
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('keydown', this.handleKeyDown);
+    }
+
+    setActiveInventoryItem = (e) => {
+        const { target: { id } } = e;
+        const targetInventoryItem = this.props.inventory.find(item => item.id === parseInt(id, 10));
+
+        if (targetInventoryItem && targetInventoryItem.inStock !== null) {
+            this.setState({ activeInventoryItem: id });
+            document.body.classList.add('no-scroll');
+        }
+    }
+
+    handleKeyDown = (event) => {
+        switch (event.keyCode) {
+        case ESCAPE_KEY:
+            this.closeActiveInventory();
+            break;
+        default:
+            break;
+        }
+    }
+
+    closeActiveInventory = () => {
+        this.setState({ activeInventoryItem: null });
+        document.body.classList.remove('no-scroll');
+    }
+
+    handleInventoryEnter = (e) => {
+        this.setActiveInventoryItem(e);
     }
 
     handleChange = (e) => {
@@ -74,55 +114,27 @@ class Inventory extends PureComponent {
         });
     }
 
-    renderStockIndicator = (inStock) => {
-        switch (inStock) {
-        case 0:
-            return (
-                <h5 className="stock-indicator" style={{ color: '#721c24' }}>
-                    <i className="fa fa-times" />
-                    Out of stock
-                </h5>
-            );
-        case 1:
-            return (
-                <h5 className="stock-indicator" style={{ color: '#155724' }}>
-                    <i className="fa fa-check" />
-                    In stock
-                </h5>
-            );
-        default:
-            return (
-                <h5 className="stock-indicator">
-                    <i className="fa fa-infinity" />
-                    Infinite
-                </h5>
-            );
-        }
-    }
-
     renderInventory = () => {
         const { inventory, activeLanguage } = this.props;
 
-        return inventory && inventory.map((inventoryItem) => {
-            const { scientificName, inStock } = inventoryItem;
+        return inventory && inventory.map((inventoryItem, index) => {
+            const { id } = inventoryItem;
 
             return (
-                <div className="inventory-grid-item col-sm-12 col-md-6 col-lg-4 col-xl-3 inline">
-                    <div className=" inventory-item" style={{ cursor: inStock === null ? 'initial' : 'pointer' }}>
-                        <h5 className="name">
-                            {inventoryItem[`name${_.startCase(activeLanguage)}`]}
-                        </h5>
-                        { scientificName &&
-                            <h6 className="scientific-name">{scientificName}</h6>
-                        }
-                        { this.renderStockIndicator(inStock) }
-                    </div>
-                </div>
+                <InventoryCard
+                    key={id}
+                    inventoryItem={inventoryItem}
+                    tabIndex={index}
+                    onEnter={this.handleInventoryEnter}
+                    onClick={this.setActiveInventoryItem}
+                    activeLanguage={activeLanguage} />
             );
         });
     }
 
     render() {
+        const { activeInventoryItem } = this.state;
+
         return (
             <div className="inventory-container">
                 <div className="inventory-controls-container">
@@ -154,6 +166,24 @@ class Inventory extends PureComponent {
                         {this.renderInventory()}
                     </div>
                 </div>
+                { activeInventoryItem &&
+                    <div>
+                        <div
+                            tabIndex={0}
+                            onClick={this.closeActiveInventory}
+                            onKeyUp={this.handleKeyDown}
+                            role="button"
+                            className="page-overlay inventory-overlay" />
+                        <InventoryCard
+                            isExpanded
+                            inventoryItem={this.props.inventory.find(item => (
+                                item.id === parseInt(this.state.activeInventoryItem, 10)
+                            ))}
+                            tabIndex={-1}
+                            activeLanguage={this.props.activeLanguage} />
+                    </div>
+
+                }
             </div>
         );
     }

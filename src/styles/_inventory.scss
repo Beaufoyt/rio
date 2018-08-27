@@ -22,9 +22,12 @@
 }
 
 .inventory-grid-item {
-    padding: 10px 20px;
+    &.contracted {
+        padding: 10px 20px;
+    }
 
     .inventory-item {
+        background-color: white;
         display: inline-block;
         width: 100%;
         border: 1px solid #dee2e6;
@@ -34,30 +37,76 @@
         position: relative;
         white-space: nowrap;
         text-overflow: ellipsis;
+        // transition: all .2s linear;
 
         .scientific-name {
+            pointer-events: none;
             font-weight: 300;
             font-style: italic;
             margin-bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            position: absolute;
         }
 
         .name {
             display: inline-block;
             font-weight: 700;
             margin-bottom: 0;
+            pointer-events: none;
         }
 
         .stock-indicator {
-            position: absolute;
-            bottom: 20px;
             margin-bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
+            margin-top: 30px;
+            pointer-events: none;
+
+            &.toggleable {
+                cursor: pointer;
+            }
+
+            span {
+                pointer-events: all;
+            }
 
             i {
                 margin-right: 5px;
                 font-size: 12px;
             }
+
+            h5 {
+                margin-bottom: 0px;
+                display: inline-block;
+            }
         }
+
+        .description {
+            margin-top: 16px;
+            margin-bottom: 16px;
+        }
+
+        .inventory-footer {
+            font-size: 12px;
+
+            i {
+                margin-right: 5px;
+            }
+
+            a {
+                color: black;
+            }
+        }
+    }
+
+    .inventory-item-expanded {
+        cursor: initial;
+        z-index: 101;
+        position: fixed;
+        width: 350px;
+        top: 120px;
+        left: 50%;
+        transform: translateX(-50%);
+        height: auto;
+        white-space: normal;
     }
 }

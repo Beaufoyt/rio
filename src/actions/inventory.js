@@ -23,3 +23,19 @@ export function fetchInventory(categoryId) {
         }
     };
 }
+
+const toggleStockSuccess = newItem => ({ type: types.TOGGLE_STOCK_SUCCESS, newItem });
+const toggleStockIsLoading = (isLoading, id) => ({ type: types.TOGGLE_STOCK_IS_LOADING, isLoading, id });
+
+export function toggleStock(inventoryId) {
+    return async (dispatch) => {
+        dispatch(toggleStockIsLoading(true, parseInt(inventoryId, 10)));
+
+        try {
+            const response = await axios.put(`${config.baseApi}/inventory/toggle-stock/${inventoryId}`);
+            dispatch(toggleStockSuccess(response.data));
+        } catch (err) {
+            dispatch(toggleStockIsLoading(false, null));
+        }
+    };
+}

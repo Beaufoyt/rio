@@ -10,4 +10,6 @@ export default keyMirror({
     FETCH_CATEGORIES_SUCCESS: null,
     FETCH_INVENTORY_IS_LOADING: null,
     FETCH_INVENTORY_SUCCESS: null,
+    TOGGLE_STOCK_IS_LOADING: null,
+    TOGGLE_STOCK_SUCCESS: null,
 });

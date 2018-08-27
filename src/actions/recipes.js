@@ -59,11 +59,5 @@ export function fetchCategories() {
         } catch (err) {
             dispatch(fetchCategoriesIsLoading(false));
         }
-        // axios.get(`${config.baseApi}/categories`).then((categories) => {
-        //     dispatch(fetchCategoriesSuccess(categories));
-        // }, (err) => {
-        //     console.log(err);
-        //     dispatch(fetchCategoriesIsLoading(false));
-        // });
     };
 }

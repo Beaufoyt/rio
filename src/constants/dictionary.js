@@ -13,4 +13,10 @@ module.exports = {
     'category-fr': 'Catégorie',
     'strapline-en': 'Aromatherapy & Natural Cosmetic Recipes',
     'strapline-fr': 'Aromathérapie et recettes cosmétiques naturelles',
+    'instock-en': 'In Stock',
+    'instock-fr': 'Disponible',
+    'outofstock-en': 'Out of Stock',
+    'outofstock-fr': 'Indisponible',
+    'infinite-en': 'Infinite',
+    'infinite-fr': 'Infini',
 };
