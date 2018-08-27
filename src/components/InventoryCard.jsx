@@ -14,6 +14,10 @@ class InventoryCard extends PureComponent {
         }
     }
 
+    handleCategoryClick = (e) => {
+        this.props.onCategoryClick(e.currentTarget.id);
+    }
+
     renderStockIndicator = (inStock, id) => {
         switch (inStock) {
         case 0:
@@ -68,15 +72,18 @@ class InventoryCard extends PureComponent {
                         <div className="inventory-footer">
                             { !!category &&
                                 <span className="pull-left">
-                                    <i className="fa fa-th-large" />
-                                    <a href={categoryName} target="_blank" rel="noreferrer noopener">
+                                    <button
+                                        className="btn-category"
+                                        id={category.id}
+                                        onClick={this.handleCategoryClick}>
+                                        <i className="fa fa-th-large" />
                                         {categoryName}
-                                    </a>
+                                    </button>
                                 </span> }
                             { !!retailer &&
                                 <span className="pull-right">
-                                    <i className="fa fa-globe-americas" />
                                     <a href={retailer.url} target="_blank" rel="noreferrer noopener">
+                                        <i className="fa fa-globe-americas" />
                                         {retailer.name}
                                     </a>
                                 </span> }
@@ -105,6 +112,7 @@ InventoryCard.propTypes = {
     onClick: PropTypes.func,
     onEnter: PropTypes.func,
     isExpanded: PropTypes.bool,
+    onCategoryClick: PropTypes.func,
 };
 
 InventoryCard.defaultProps = {
@@ -112,6 +120,7 @@ InventoryCard.defaultProps = {
     onClick: () => {},
     onEnter: () => {},
     isExpanded: false,
+    onCategoryClick: null,
 };
 
 export default InventoryCard;

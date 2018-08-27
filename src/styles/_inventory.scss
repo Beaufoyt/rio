@@ -37,7 +37,6 @@
         position: relative;
         white-space: nowrap;
         text-overflow: ellipsis;
-        // transition: all .2s linear;
 
         .scientific-name {
             pointer-events: none;
@@ -63,10 +62,11 @@
 
             &.toggleable {
                 cursor: pointer;
-            }
 
-            span {
-                pointer-events: all;
+                span {
+                    padding: 5px;
+                    pointer-events: all;
+                }
             }
 
             i {
@@ -82,10 +82,10 @@
 
         .description {
             margin-top: 16px;
-            margin-bottom: 16px;
         }
 
         .inventory-footer {
+            margin-top: 16px;
             font-size: 12px;
 
             i {
@@ -95,7 +95,14 @@
             a {
                 color: black;
             }
+
+            .btn-category {
+                border: none;
+                cursor: pointer;
+                padding: 0;
+            }
         }
+
     }
 
     .inventory-item-expanded {
@@ -108,5 +115,9 @@
         transform: translateX(-50%);
         height: auto;
         white-space: normal;
+
+        &:focus {
+            outline: none;
+        }
     }
 }

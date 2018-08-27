@@ -67,6 +67,11 @@ class Inventory extends PureComponent {
         }
     }
 
+    setCategory = (id) => {
+        this.setState({ currentCategory: id });
+        this.closeActiveInventory();
+    }
+
     handleKeyDown = (event) => {
         switch (event.keyCode) {
         case ESCAPE_KEY:
@@ -175,6 +180,7 @@ class Inventory extends PureComponent {
                             role="button"
                             className="page-overlay inventory-overlay" />
                         <InventoryCard
+                            onCategoryClick={this.setCategory}
                             isExpanded
                             inventoryItem={this.props.inventory.find(item => (
                                 item.id === parseInt(this.state.activeInventoryItem, 10)
