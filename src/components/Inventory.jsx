@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 
 import { fetchCategories } from '../actions/recipes';
-import { fetchInventory } from '../actions/inventory';
+import { fetchInventory, searchInventory } from '../actions/inventory';
 import scrollTop from '../helpers/scrollTop';
 import translator from '../helpers/translator';
 
@@ -58,6 +58,10 @@ class Inventory extends PureComponent {
         document.removeEventListener('keydown', this.handleKeyDown);
     }
 
+    onSearchSubmit = (searchString) => {
+        this.props.searchInventory(searchString, this.props.activeLanguage, this.state.currentCategory);
+    }
+
     setActiveInventoryItem = (e) => {
         const { target: { id } } = e;
         const targetInventoryItem = this.props.inventory.find(item => item.id === parseInt(id, 10));
@@ -100,15 +104,6 @@ class Inventory extends PureComponent {
 
     toggleControls = () => {
         this.setState({ controlsExpanded: !this.state.controlsExpanded });
-    }
-
-    searchRecipes = (e) => {
-        e.preventDefault();
-        const searchString = e.target.id;
-
-        if (searchString) {
-            this.onSearchSubmit(searchString);
-        }
     }
 
     mapCategories = () => {
@@ -164,15 +159,18 @@ class Inventory extends PureComponent {
 
     render() {
         const { activeInventoryItem, controlsExpanded } = this.state;
+        const {
+            searchInventoryIsLoading, fetchInventoryIsLoading, activeLanguage, searchString, inventory,
+        } = this.props;
 
         return (
             <div className="inventory-container">
                 <div className="inventory-controls-container">
                     <SearchForm
-                        isLoading={this.props.fetchInventoryIsLoading}
+                        isLoading={fetchInventoryIsLoading || searchInventoryIsLoading}
                         searchStyle=""
-                        placeholder={translator('inventory-search', this.props.activeLanguage)}
-                        defaultValue={this.props.searchString}
+                        placeholder={translator('inventory-search', activeLanguage)}
+                        defaultValue={searchString}
                         onSubmit={this.onSearchSubmit} />
                     {this.renderControls('desktop')}
                     <button className="btn btn-light btn-controls" onClick={this.toggleControls}>
@@ -198,11 +196,11 @@ class Inventory extends PureComponent {
                         <InventoryCard
                             onCategoryClick={this.setCategory}
                             isExpanded
-                            inventoryItem={this.props.inventory.find(item => (
-                                item.id === parseInt(this.state.activeInventoryItem, 10)
+                            inventoryItem={inventory.find(item => (
+                                item.id === parseInt(activeInventoryItem, 10)
                             ))}
                             tabIndex={-1}
-                            activeLanguage={this.props.activeLanguage} />
+                            activeLanguage={activeLanguage} />
                     </div> }
             </div>
         );
@@ -213,8 +211,10 @@ Inventory.propTypes = {
     searchString: PropTypes.string,
     categoryId: PropTypes.string,
     fetchInventoryIsLoading: PropTypes.bool.isRequired,
+    searchInventoryIsLoading: PropTypes.bool.isRequired,
     fetchCategories: PropTypes.func.isRequired,
     fetchInventory: PropTypes.func.isRequired,
+    searchInventory: PropTypes.func.isRequired,
     activeLanguage: PropTypes.string.isRequired,
     fetchCategoriesIsLoading: PropTypes.bool.isRequired,
     categories: PropTypes.arrayOf(PropTypes.shape({
@@ -239,11 +239,12 @@ const mapStateToProps = state => ({
     categories: state.recipes.categories,
     activeLanguage: state.language.activeLanguage,
     fetchInventoryIsLoading: state.inventory.fetchIsLoading,
+    searchInventoryIsLoading: state.inventory.searchIsLoading,
     inventory: state.inventory.inventory,
 });
 
 const mapDispatchToProps = dispatch => (
-    bindActionCreators({ fetchCategories, fetchInventory }, dispatch)
+    bindActionCreators({ fetchCategories, fetchInventory, searchInventory }, dispatch)
 );
 
 export default connect(mapStateToProps, mapDispatchToProps)(Inventory);

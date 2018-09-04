@@ -12,12 +12,6 @@
         outline: none;
         color: #24292e;
 
-        &.details {
-            border-bottom-right-radius: 0;
-            border-bottom-left-radius: 0;
-            border-bottom: 0 !important;
-        }
-
         &:focus {
             // box-shadow: 0 0 0 0.2rem rgba(248, 249, 250, 0.5);
         }
@@ -27,28 +21,5 @@
         position: absolute;
         font-size: 20px;
         margin: 15px;
-    }
-
-    .search-details-container {
-        border-top: 0 !important;
-        z-index: 100;
-        position: absolute;
-        width: 100%;
-        background: white;
-        border-bottom-right-radius: 3px;
-        border-bottom-left-radius: 3px;
-
-        hr {
-            background-color: initial;
-            margin: 0 16px 16px 16px;
-        }
-
-        .alert {
-            margin: 0 16px 16px 16px;
-
-            i {
-                margin-right: 5px;
-            }
-        }
     }
 }
