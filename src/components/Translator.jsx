@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import dictionary from '../constants/dictionary';
+import translator from '../helpers/translator';
 
 const Translator = (props) => {
-    return (dictionary[`${props.languageKey}-${props.activeLanguage}`]);
+    return (translator(props.languageKey, props.activeLanguage));
 };
 
 Translator.propTypes = {
