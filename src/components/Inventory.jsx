@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 
@@ -166,6 +167,9 @@ class Inventory extends PureComponent {
                     </option>
                     {this.mapCategories()}
                 </select>
+                <Link to="/inventory-add" href="/inventory-add" className="btn btn-primary btn-add-inventory">
+                    <i className="fa fa-plus-square" />
+                </Link>
             </div>
         );
     }

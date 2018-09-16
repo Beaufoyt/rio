@@ -18,6 +18,7 @@
 
     .recipes-dropdown {
         width: 200px;
+        margin-right: 16px;
     }
 
     .btn-controls {
@@ -145,6 +146,14 @@
         &:focus {
             outline: none;
         }
+    }
+}
+
+.btn-add-inventory {
+    vertical-align: baseline;
+
+    i {
+        vertical-align: middle;
     }
 }
 
